@@ -26,8 +26,18 @@ else
 
 
 require(ROOT . 'config/config.php');
-require(ROOT . 'class/config.class.php');
-require(ROOT . 'class/log.class.php');
-require(ROOT . 'class/mysql.class.php');
+require(ROOT . 'functions/functions.php');
+require(ROOT . 'class/Config.class.php');
+require(ROOT . 'class/Log.class.php');
+require(ROOT . 'class/Mysql.class.php');
+require(ROOT . 'class/Upload.class.php');
+
+$x = (Config::getIns())->upload_pic_dir;
+$a =    Upload::getIns($x);
+$b = $a->upload();
+var_dump($b);
+
+
+
 
 

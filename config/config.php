@@ -10,7 +10,7 @@ return [
 		'pwd'=>'root',		
 	],
 
-
+    'upload_pic_dir'=>ROOT . 'upload/upload_pic/',
 	
 	
 
