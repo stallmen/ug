@@ -7,10 +7,11 @@
  */
 
 
+
 //根目录
 define('ROOT',str_replace('\\','/',__DIR__) . '/');
-
-
+//文件访问限制
+define('WHO_YOU_ARE',true);
 
 //设置报错级别
 define('DEBUG',true);
@@ -24,18 +25,14 @@ else
 	error_reporting(0);
 }
 
-
 require(ROOT . 'config/config.php');
 require(ROOT . 'functions/functions.php');
-require(ROOT . 'class/Config.class.php');
-require(ROOT . 'class/Log.class.php');
-require(ROOT . 'class/Mysql.class.php');
-require(ROOT . 'class/Upload.class.php');
 
-$x = (Config::getIns())->upload_pic_dir;
-$a =    Upload::getIns($x);
-$b = $a->upload();
-var_dump($b);
+spl_autoload_register(function($class)
+{
+	include(ROOT  . str_replace('\\','/',$class) . '.class.php');
+});
+
 
 
 

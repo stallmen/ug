@@ -1,5 +1,6 @@
 <?php
-
+namespace Lib;
+defined('WHO_YOU_ARE') || die('access deny!');
 /*
  *
  *配置读取类

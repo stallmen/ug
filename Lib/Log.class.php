@@ -1,5 +1,6 @@
 <?php
-
+namespace Lib;
+defined('WHO_YOU_ARE') || die('access deny!');
 /*
  *
  *日志类

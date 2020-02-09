@@ -1,9 +1,8 @@
 <?php
-
-
+namespace Lib;
+defined('WHO_YOU_ARE') || die('access deny!');
 class Upload
 {
-    
     private static $ins;
     private $ext;
     private $size;

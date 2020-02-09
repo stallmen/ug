@@ -1,5 +1,5 @@
 <?php
-
+defined('WHO_YOU_ARE') || die('access deny!');
 /*
  *目录创建函数
  *@param $path  仅支持绝对路径
