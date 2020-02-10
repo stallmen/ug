@@ -17,9 +17,6 @@ class Mysql
     {
         $this->mysql = (Config::getIns())->mysql; 
         $this->connect();
-
-
-
     }
 
 

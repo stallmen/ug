@@ -124,7 +124,7 @@ class Verify
 	*/
 	public function thumb($path,$watermark = '',$gray = false,$width = 40,$height = 40,$watermark_width = 10 , $watermark_height = 10,$water_x = 30,$water_y = 30,$pac = 50)
 	{
-		// header ('Content-Type: image/png');
+		
 		//目录检测及创建
 		$thumb_dir = $this->checkDir();
 		if(!is_dir($thumb_dir)) return $thumb_dir;

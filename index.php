@@ -30,7 +30,7 @@ require(ROOT . 'functions/functions.php');
 
 spl_autoload_register(function($class)
 {
-	include(ROOT  . str_replace('\\','/',$class) . '.class.php');
+	@include_once(ROOT  . str_replace('\\','/',$class) . '.class.php');
 });
 
 
