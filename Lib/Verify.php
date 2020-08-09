@@ -51,16 +51,15 @@ class Verify
 	*@param $width 宽
 	*@param $height 高
 	*@param $inter 干扰雪花数
-	*@return 验证码图片-png格式
+	*@return 字符串验证码以及png格式的验证码base64字节流,及对应的TOKEN令牌--舍弃session
 	*/
 	public function verifyCode($length = 4,$width = 110,$height = 40,$inter = 100)
 	{
-		header ('Content-Type: image/png');
 		$im = @imagecreatetruecolor($width, $height);
 		
 		//获取随机字符串
 		$char = $this->getChar($length);
-
+		$token = strtoupper(md5(time() . str_shuffle(time()) . rand(1111,9999)) . $this->getChar(6));
 
 		for($i = 0;$i<$length;$i++)
 		{
@@ -83,9 +82,13 @@ class Verify
 			imagesetpixel($im,mt_rand(0,$width),mt_rand(0,$height),$inter_color);
 			
 		}
-	
+
+		ob_start();
 		imagepng($im);
 		imagedestroy($im);
+		$img = base64_encode(ob_get_clean());
+		
+		return ['verifyCode'=>$char,'token'=>$token,'img_base64'=>$img];
 	}
 	
 	/*
@@ -119,10 +122,10 @@ class Verify
 	*@param $water_x 水印位置X坐标
 	*@param $water_y 水印位置Y坐标
 	*@param $gray 是否为灰色/黑白照
-	*@param $pac 透明程度0-100/默认为50半透明
+	*@param $pac 水印透明程度0-100/默认为50半透明
 	*return 缩略图路径
 	*/
-	public function thumb($path,$watermark = '',$gray = false,$width = 40,$height = 40,$watermark_width = 10 , $watermark_height = 10,$water_x = 30,$water_y = 30,$pac = 50)
+	public function thumb($path,$width = 40,$height = 40,$watermark = '',$gray = false,$watermark_width = 10 , $watermark_height = 10,$water_x = 30,$water_y = 30,$pac = 50)
 	{
 		
 		//目录检测及创建

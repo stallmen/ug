@@ -7,7 +7,6 @@
  */
 
 
-
 //根目录
 define('ROOT',str_replace('\\','/',__DIR__) . '/');
 //文件访问限制
@@ -25,13 +24,51 @@ else
 	error_reporting(0);
 }
 
-require(ROOT . 'config/config.php');
-require(ROOT . 'functions/functions.php');
+defined('LIB') || define('LIB','Lib');
+defined('MODEL') || define('MODEL','Model');
+defined('CONTROLLER') || define('CONTROLLER','Controller');
+defined('VIEW') || define('VIEW','View');
+
+
 
 spl_autoload_register(function($class)
 {
-	@include_once(ROOT  . str_replace('\\','/',$class) . '.class.php');
+	require_once(ROOT . 'config/config.php');
+	require_once(ROOT . 'functions/functions.php');
+		
+	$class = str_replace('\\','/',$class);
+	
+	@include_once(ROOT   . $class . '.php');
+
 });
+
+/*
+*路由实现 先用着
+*模块-控制器-方法
+*/
+$path = $_SERVER['QUERY_STRING'];
+if(!empty($path))
+{
+	$path = explode('/',$path);
+	if(count($path) != 3)
+	{
+		header("Location:localhost");
+	}else
+	{
+		$str = $path[0] . '\\' . $path[1];
+		$obj = new $str;
+		call_user_func([$obj,$path[2]]);
+	}		
+}
+
+
+
+
+
+
+
+
+
 
 
 

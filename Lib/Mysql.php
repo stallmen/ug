@@ -5,7 +5,7 @@ defined('WHO_YOU_ARE') || die('access deny!');
  *Mysql数据操作类
  */
 
-class Mysql
+final class Mysql
 {
     private static $ins = null;
 
@@ -40,7 +40,7 @@ class Mysql
         
         try
         {
-            $this->conn = new PDO($dsn,$this->mysql['user'],$this->mysql['pwd']);
+            $this->conn = new \PDO($dsn,$this->mysql['user'],$this->mysql['pwd']);
         }catch(PDOException $e)
         {
             if(DEBUG)   throw new Exception($e->getMessage());
@@ -52,7 +52,7 @@ class Mysql
     }
 
 
-    public function query($sql,$data = [],$one = false,$pattern = PDO::FETCH_ASSOC)
+    public function query($sql,$data = [],$one = false,$pattern = \PDO::FETCH_ASSOC)
     {
         $sql = trim($sql);
 
@@ -80,7 +80,6 @@ class Mysql
             if(!$res) die('data error!');
 
             $data = array_combine($keys,$data);             //最终的绑定数据
-  
         
         }
         //检测操作select insert up...  etc

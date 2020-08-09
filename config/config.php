@@ -7,7 +7,7 @@ defined('WHO_YOU_ARE') || die('access deny!');
 return [
 	//数据库操作
 	'mysql'=>[
-		'db'=>'mvc',
+		'db'=>'im',
 		'host'=>'127.0.0.1',
 		'user'=>'root',
 		'pwd'=>'root',		
@@ -19,6 +19,12 @@ return [
 	'redis'=>[
 		'host'=>'127.0.0.1',
 		'port'=>6379,
+	],
+	'mail'=>[
+		'server'=>'smtp.163.com',
+		'port'=>25,
+		'user'=>'woganwuhao@163.com',
+		'pwd'=>'19931070Qq'
 	],
 	
 
