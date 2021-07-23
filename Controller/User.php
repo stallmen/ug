@@ -1,11 +1,11 @@
 <?php
 namespace Controller;
 use Lib\Controller;
+use Lib\Mysql;
 use Lib\Verify;
 use Lib\Redis;
-use Model\UserModel;
 
-class UserController extends Controller
+class User extends Controller
 {
 	private $redis;
 	
@@ -14,12 +14,19 @@ class UserController extends Controller
 	{
 		parent::__construct();
 		
-		$this->redis = Redis::getIns();
+//		$this->redis = Redis::getIns();
 	}
 	
 	
 	public function verifyCode()
 	{
+
+	    $a = Mysql::getIns();
+
+	    $b = $a->insert('test',['name'=>'张']);
+//	    $b = $a->insert('test',[['name'=>'张','id'=>2],['name'=>'里','id'=>3]]);
+	    var_dump($b);exit;
+
 		$verify = Verify::getIns();
 		$code_arr = $verify->verifyCode();
 		if(!is_array($code_arr)) return false;

@@ -7,10 +7,11 @@ defined('WHO_YOU_ARE') || die('access deny!');
 return [
 	//数据库操作
 	'mysql'=>[
-		'db'=>'im',
+		'dbname'=>'test',
 		'host'=>'127.0.0.1',
 		'user'=>'root',
-		'pwd'=>'root',		
+		'pwd'=>'root',
+        'charset'=>'utf8mb4'
 	],
 
     'upload_pic_dir'=>ROOT . 'upload/upload_pic/',

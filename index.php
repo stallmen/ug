@@ -7,6 +7,10 @@
  */
 
 
+
+if(version_compare(PHP_VERSION,'8.0.0','<'))    exit('请选择PHP8.0以上版本!');
+
+
 //根目录
 define('ROOT',str_replace('\\','/',__DIR__) . '/');
 //文件访问限制
@@ -27,7 +31,6 @@ else
 defined('LIB') || define('LIB','Lib');
 defined('MODEL') || define('MODEL','Model');
 defined('CONTROLLER') || define('CONTROLLER','Controller');
-defined('VIEW') || define('VIEW','View');
 
 
 
@@ -47,9 +50,11 @@ spl_autoload_register(function($class)
 *模块-控制器-方法
 */
 $path = $_SERVER['QUERY_STRING'];
+
 if(!empty($path))
 {
 	$path = explode('/',$path);
+
 	if(count($path) != 3)
 	{
 		header("Location:localhost");
@@ -60,6 +65,8 @@ if(!empty($path))
 		call_user_func([$obj,$path[2]]);
 	}		
 }
+
+
 
 
 
