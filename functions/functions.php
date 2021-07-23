@@ -27,24 +27,17 @@ function _mkdir($path,$mode = 0766)
     return true;
 }
 
-/*
-*模板引入
-*/
-function view($path)
-{
-	return @include_once(ROOT . VIEW . '/' . $path);
-}
 
 /*
 *json数据返回
 */
-function json($str)
+function json($str=null,$code = 200)
 {
 	header('Content-Type:application/json; charset=utf-8');
 	if(!is_scalar($str) && !json_encode($str)) exit('json data error');
 	
 	//注意中文编码
-	exit(json_encode(['code'=>200,'data'=>$str],JSON_UNESCAPED_UNICODE));
+	exit(json_encode(['code'=>$code,'data'=>$str],JSON_UNESCAPED_UNICODE));
 } 
 
 
